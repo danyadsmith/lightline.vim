@@ -30,9 +30,9 @@ let s:p.normal.right = [ [ s:fgdark, s:bgmedium ], [ s:fgdark, s:bgdark ] ]
 let s:p.normal.warning = [ [ s:bglight, s:warningkolor ] ]
 let s:p.normal.error = [ [ s:bglight, s:replacekolor ] ]
 
-let s:p.inactive.left =  [ [ s:fgmedium, s:bgdark ], [ s:fgdark, s:bgdark ] ]
+let s:p.inactive.left =  [ [ s:fgmedium, s:bgdarkest ], [ s:fgmedium, s:bgdarkest ] ]
 let s:p.inactive.middle = [ [ s:fgmedium, s:bgdarkest ] ]
-let s:p.inactive.right = [ [ s:fgmedium, s:bgdarkest ], [ s:fgdark, s:bgdark ] ]
+let s:p.inactive.right = [ [ s:fgmedium, s:bgdarkest ], [ s:fgmedium, s:bgdarkest ] ]
 
 let s:p.replace.left = [ [ s:bglightest, s:replacekolor ], [ s:fgdark, s:bgdark ] ]
 let s:p.replace.middle = [ [ s:fgmedium, s:bgdarkest ] ]
