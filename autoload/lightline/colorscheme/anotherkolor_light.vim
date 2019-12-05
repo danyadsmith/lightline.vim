@@ -18,7 +18,7 @@ let s:insertlight  = ["#add9b0", "NONE"]
 let s:insertmedium = ["#31ad38", "NONE"]
 let s:insertdark   = ["#004101", "NONE"]
 let s:replacekolor = ["#d70000", "NONE"]
-let s:visualkolor  = ["#ffcc00", "NONE"]
+let s:visualkolor  = ["#f9fb8c", "NONE"]
 let s:warningkolor = ["#dca706", "NONE"]
 
 let s:p = {'normal': {}, 'inactive': {}, 'insert': {}, 'replace': {}, 'visual': {}, 'tabline': {}}
