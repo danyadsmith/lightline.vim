@@ -11,36 +11,29 @@ https://github.com/itchyny/lightline.vim
 
 ![lightline.vim - wombat](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/wombat.png)
 
-### jellybeans
-
-![lightline.vim - jellybeans](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/jellybeans.png)
-
-### solarized dark
+### solarized (`background=dark`)
 
 ![lightline.vim - solarized_dark](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/solarized_dark.png)
 
-### solarized light
+### solarized (`background=light`)
 
 ![lightline.vim - solarized_light](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/solarized_light.png)
 
-### PaperColor light
+### PaperColor (`background=dark`)
 
-![lightline.vim - PaperColor](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/PaperColor.png)
+![lightline.vim - PaperColor_dark](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/PaperColor_dark.png)
 
-### seoul256
+### PaperColor (`background=light`)
 
-![lightline.vim - seoul256](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/seoul256.png)
+![lightline.vim - PaperColor_light](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/PaperColor_light.png)
 
-### one
+### one (`background=dark`)
 
-![lightline.vim - one](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/one.png)
+![lightline.vim - one_dark](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/one_dark.png)
 
-### landscape
+### one (`background=light`)
 
-![lightline.vim - landscape](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/landscape.png)
-
-landscape is my colorscheme, which is a high-contrast cterm-supported colorscheme, available at https://github.com/itchyny/landscape.vim
-
+![lightline.vim - one_light](https://raw.githubusercontent.com/wiki/itchyny/lightline.vim/image/one_light.png)
 
 For screenshots of all available colorshemes, see [this file](colorscheme.md).
 
@@ -55,7 +48,8 @@ For screenshots of all available colorshemes, see [this file](colorscheme.md).
 + Orthogonality. The plugin does not rely on the implementation of other plugins. Such plugin crossing settings should be configured by users.
 
 ## Installation
-### [Vim packages](http://vimhelp.appspot.com/repeat.txt.html#packages) (since Vim 7.4.1528)
+### [Vim packages](https://vimhelp.org/repeat.txt.html#packages) (since Vim 7.4.1528)
+1. Clone the plugin with the following command.
 
         git clone https://github.com/itchyny/lightline.vim ~/.vim/pack/plugins/start/lightline
 
@@ -86,6 +80,13 @@ For screenshots of all available colorshemes, see [this file](colorscheme.md).
         Plug 'itchyny/lightline.vim'
 
 2. Install with `:PlugInstall`.
+
+### [dein.vim](https://github.com/Shougo/dein.vim)
+1. Add the following configuration to your `.vimrc`.
+
+        call dein#add('itchyny/lightline.vim')
+
+2. Install with `:call dein#install()`
 
 ## Introduction
 After installing this plugin, you restart the editor and will get a cool statusline.
@@ -239,7 +240,7 @@ let g:lightline = {
       \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
 ```
@@ -323,7 +324,7 @@ let g:lightline = {
       \ }
 
 function! LightlineMode()
-  return expand('%:t') ==# '__Tagbar__' ? 'Tagbar':
+  return expand('%:t') =~# '^__Tagbar__' ? 'Tagbar':
         \ expand('%:t') ==# 'ControlP' ? 'CtrlP' :
         \ &filetype ==# 'unite' ? 'Unite' :
         \ &filetype ==# 'vimfiler' ? 'VimFiler' :
@@ -376,6 +377,40 @@ endfunction
 
 You can control the visibility and contents by writing simple functions.
 Now you notice how much function component is important for the configurability of lightline.vim.
+
+### more tips
+#### Mode names are too long. Can I use shorter mode names?
+Yes, configure `g:lightline.mode_map`.
+```vim
+let g:lightline = {
+      \ 'mode_map': {
+        \ 'n' : 'N',
+        \ 'i' : 'I',
+        \ 'R' : 'R',
+        \ 'v' : 'V',
+        \ 'V' : 'VL',
+        \ "\<C-v>": 'VB',
+        \ 'c' : 'C',
+        \ 's' : 'S',
+        \ 'S' : 'SL',
+        \ "\<C-s>": 'SB',
+        \ 't': 'T',
+        \ },
+      \ }
+```
+
+#### How can I truncate the components from the right in narrow windows?
+Please include `%<` to one of the right components.
+```vim
+let g:lightline = {
+      \ 'component': {
+      \   'lineinfo': '%3l:%-2v%<',
+      \ },
+      \ }
+```
+
+#### Where can I find the default components?
+See `:h g:lightline.component`.
 
 ## Note for developers of other plugins
 Appearance consistency matters.
